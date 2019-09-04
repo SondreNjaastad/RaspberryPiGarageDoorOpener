@@ -7,11 +7,11 @@ var portOpen = new Gpio(24, 'in');
 var port = 3000;
 
 const PORTSTATE = {
-  OPEN = 'open',
-  CLOSED = 'closed',
-  OPENING = 'opening',
-  CLOSING = 'closing',
-  UNKNOWN = 'unknown'
+  OPEN: 'open',
+  CLOSED: 'closed',
+  OPENING: 'opening',
+  CLOSING: 'closing',
+  UNKNOWN: 'unknown'
 }
 
 valuesOpen = [];
