@@ -1,0 +1,19 @@
+[Unit]
+Description=Garage Controller
+
+[Service]
+ExecStart=/usr/local/bin/node /home/pi/RaspberryPiGarageDoorOpener/index.js
+WorkingDirectory=/home/pi/RaspberryPiGarageDoorOpener
+Restart=always
+# Restart service after 10 seconds if node service crashes
+RestartSec=10
+# Output to syslog
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=nodejs-garage
+#User=<alternate user>
+#Group=<alternate group>
+#Environment=NODE_ENV=production PORT=<Optional port>
+
+[Install]
+WantedBy=multi-user.target

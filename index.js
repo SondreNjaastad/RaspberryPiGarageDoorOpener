@@ -6,7 +6,7 @@ var app = express();
 var portController = new Gpio(18, 'out');
 var portClosed = new Gpio(23, 'in');
 var portOpen = new Gpio(24, 'in');
-var port = 3000;
+var port = process.env.PORT || 3000;
 
 const PORTSTATE = {
   OPEN: 'open',
