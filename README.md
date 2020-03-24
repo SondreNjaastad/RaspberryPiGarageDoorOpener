@@ -1,4 +1,4 @@
-# RaspberryPiGarageDoorOpener
+# Raspberry Pi Garage Door Controller
 
 This project is intended to use on a Raspberry Pi.
 Tested and running on a Pi 3B+, running on other models might require you to use other pins.
