@@ -1,3 +1,5 @@
+require('./consoleTimestamp')();
+
 var Gpio = require('onoff').Gpio;
 var express = require('express');
 var app = express();
@@ -55,7 +57,7 @@ function checkState() {
   }
 
   //Should be removed once you get good data from the sensors
-  console.log('The port is  ' + portState);
+  //console.log('The port is  ' + portState);
 }
 
 function sumArray(arr){
@@ -71,27 +73,44 @@ function stopController() {
 }
 
 app.get('/api/open', (req, res) => { 
+  var ip = req.connection.remoteAddress;
+
   if(portState === PORTSTATE.CLOSED){
     toggleGarageDoor();
+    console.log(`[${ip}] Opening the garage`);
     res.send('SUCCESS');
   }
   else if(portState === PORTSTATE.OPEN){
+    console.log(`[${ip}] Garage already open`);
     res.send('NOCHANGE'); 
   } else {
+    console.log(`[${ip}] Unable to determin door state`);
     res.send('UNKNOWN'); 
   }
 })
 
 app.get('/api/close', (req, res) => { 
+  var ip = req.connection.remoteAddress;
+  
   if(portState === PORTSTATE.OPEN){
     toggleGarageDoor();
+    console.log(`[${ip}] Closing the garage`);
     res.send('SUCCESS');
   }
   else if(portState === PORTSTATE.CLOSED){
+    console.log(`[${ip}] Garage already closed`);
     res.send('NOCHANGE'); 
   } else {
+    console.log(`[${ip}] Unable to determin door state`);
     res.send('UNKNOWN'); 
   }
+})
+
+app.get('/api/nudge', (req, res) => { 
+  var ip = req.connection.remoteAddress;
+  console.log(`[${ip}] Nudge initiated`);
+  toggleGarageDoor();
+  res.send('NUDGE OK'); 
 })
 
 app.get('/api/status', (req, res) => { 
