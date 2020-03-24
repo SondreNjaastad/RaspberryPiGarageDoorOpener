@@ -43,4 +43,8 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
 
 ## Configure app
 
-It's recommended that you run the app as a [linux service](https://www.axllent.org/docs/view/nodejs-service-with-systemd), or with screen to keep the app running after leaving SSH. 
+It's recommended that you run the app as a [linux service](https://www.axllent.org/docs/view/nodejs-service-with-systemd), or with screen to keep the app running after leaving SSH.
+
+    $ cp /home/pi/RaspberryPiGarageDoorOpener/garage.service /etc/systemd/system/garage.service
+    $ systemctl enable garage.service
+    $ systemctl start garage.service
